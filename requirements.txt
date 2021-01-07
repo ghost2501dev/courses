@@ -20,6 +20,7 @@ psycopg2-binary
 pytest-cov
 pytest-django
 python-memcached
+python-slugify
 snapshottest
 splinter[django]
 whitenoise
