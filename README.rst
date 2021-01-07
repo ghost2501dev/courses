@@ -1,10 +1,12 @@
 *******
-courses
+Courses
 *******
 
-Cursos de desarrollo y programación.
+Development and programming courses.
 
 <http://cursosghost2501.herokuapp.com>
+
+As a side note, this project lives on `GitLab <https://gitlab.com/ghost2501/courses>`_ and it's mirrored to `GitHub <https://github.com/ghost2501dev/courses>`_.
 
 Getting Started
 ===============
