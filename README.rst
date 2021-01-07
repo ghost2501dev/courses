@@ -76,8 +76,8 @@ Add the dependency to requirements.txt:
 
    .. code-block:: text
       # requirements.txt
-      Django==3.0.11
-      yourdependency
+      Django
+      anotherdependency
 
 Then run:
 
