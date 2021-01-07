@@ -1,0 +1,14 @@
+<div class="block classes-sidebar">
+  <a href="{{ course.get_absolute_url }}" class="course">{{ course }}</a>
+  <ol>
+    {% for class_item in course.class_set.all %}
+      <li {% if class_item == class %}class="current" %}{% endif %}>
+        {% if class_item == class %}
+          <span>{{ class_item }}</span>
+        {% else %}
+          <a href="{{ class_item.get_absolute_url }}">{{ class_item }}</a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ol>
+</div>

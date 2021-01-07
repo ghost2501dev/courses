@@ -1,0 +1,19 @@
+{% if breadcrumb %}
+  <div class="breadcrumb">
+    <div class="breadcrumb-container">
+    {% for crumb in breadcrumb %}
+      {% spaceless %}
+        {% if not forloop.first %}
+          <span class="arrow">›&nbsp;</span>
+        {% endif %}
+
+        {% if crumb.url %}
+          <a href="{{ crumb.url }}" class="link">{{ crumb.title }}</a>
+        {% else %}
+          <span class="text">{{ crumb.title }}</span>
+        {% endif %}
+      {% endspaceless %}
+    {% endfor %}
+    </div>
+  </div>
+{% endif %}

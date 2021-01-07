@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block layout %}
+  <div id="page-container">
+    {% include "includes/navbar.html" %}
+    {% include "includes/breadcrumb.html" %}
+
+    {% block content %}{% endblock %}
+  </div>
+
+  {% include "includes/footer.html" %}
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "layouts/main.html" %}
+
+{% block title %}{{ course }}{% endblock %}
+
+{% if course.meta_keywords %}
+  {% block meta_keywords %}{{ course.meta_keywords }}{% endblock %}
+{% endif %}
+{% if course.meta_description %}
+  {% block meta_description %}{{ course.meta_description }}{% endblock %}
+{% endif %}
+
+{% block body_id %}course-detail-page{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="content">
+        {% if user.is_superuser %}
+          <a href="{% url "admin:courses_course_change" course.pk %}">Editar</a>
+          <a href="{% url "admin:courses_class_add" %}?course={{ course.pk }}">Agregar clase</a>
+        {% endif %}
+
+        <h1>{{ course }}</h1>
+
+        {% if course.description %}
+          <p>{{ course.description }}</p>
+        {% endif %}
+
+        {% if course.youtube_url or course.duration %}
+          <ul class="metadata">
+            {% if course.youtube_url %}
+              <li><i class="fab fa-youtube"></i> Youtube: <a href="{{ course.youtube_url}}">{{ course.youtube_url }}</a></li>
+            {% endif %}
+
+            {% if course.duration %}
+              <li><i class="fas fa-clock"></i> Duración: {{ course.duration }} horas</li>
+            {% endif %}
+          </ul>
+        {% endif %}
+
+        {% if course.required_courses.all %}
+          <div class="required-courses">
+            <h3>Cursos requeridos/recomendados:</h3>
+            <ul>
+              {% for course_item in course.required_courses.all %}
+                <a href="{{ course_item.get_absolute_url }}">{{ course }}</a>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+
+        <a class="btn" href="{{ course.class_set.first.get_absolute_url }}">Comenzar</a>
+      </div>
+
+      <div class="classes">
+        {% include "courses/includes/classes_sidebar.html" with course=course %}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="content">
+        {% include "courses/includes/share_buttons.html" %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

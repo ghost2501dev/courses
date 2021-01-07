@@ -1,0 +1,22 @@
+{% extends "layouts/main.html" %}
+{% load static i18n %}
+
+{% block meta_keywords %}cursos,tutoriales,aprender,programación,desarrollosoftware,lenguages,frameworks,base de datos{% endblock %}
+{% block meta_description %}Cursos de desarrollo y programación, de la mano de un experimentado desarrollador en la industria.{% endblock %}
+{% block body_id %}courses-page{% endblock %}
+
+{% block content %}
+  <div class="container index">
+    {% regroup courses by first_letter_name as courses_groups %}
+    {% for group in courses_groups %}
+      <div class="group">
+        <h3>{{ group.grouper }}</h3>
+        <ul>
+          {% for course in group.list %}
+            <li><a href="{{ course.get_absolute_url }}">{{ course }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

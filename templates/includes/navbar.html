@@ -1,0 +1,56 @@
+<div class="navbar">
+  <a class="brand" href="{% url "courses:courses" %}">Cursos (ghost2501)</a>
+
+  <ul class="social">
+    <li>
+      <!--
+      <a href="#">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+        </span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+        </span>
+      </a>
+    </li>
+    -->
+    <li>
+      <a href="https://www.youtube.com/channel/UCf1qOeoxB2rbYyA5xM0mZMA">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fab fa-youtube fa-stack-1x fa-inverse"></i>
+        </span>
+      </a>
+    </li>
+    <li>
+      <a href="https://gitlab.com/ghost2501">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fab fa-gitlab fa-stack-1x fa-inverse"></i>
+        </span>
+      </a>
+    </li>
+
+    <li>
+      <a href="https://github.com/ghost2501dev">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fab fa-github-alt fa-stack-1x fa-inverse"></i>
+        </span>
+      </a>
+    </li>
+  </ul>
+
+  <div class="break"></div>
+  <ul class="menu">
+    <li {% ifequal request.resolver_match.app_name "courses" %}class="active"{% endifequal %}><a href="{% url "courses:courses" %}">Cursos</a></li>
+    <li {% ifequal request.resolver_match.view_name "about" %}class="active"{% endifequal %}><a href="{% url "about" %}">Acerca de</a></li>
+    <li {% ifequal request.resolver_match.view_name "support_me" %}class="active"{% endifequal %}><a href="{% url "support_me" %}">Apóyame</a></li>
+  </ul>
+</div>

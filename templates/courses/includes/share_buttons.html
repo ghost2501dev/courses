@@ -1,0 +1,60 @@
+{% load static sekizai_tags %}
+
+<div class="share-buttons">
+  <span>Compartir:</span>
+  <ul>
+    <li>
+      <a
+        target="_blank"
+        class="fb"
+        onclick="window.open('https://www.facebook.com/sharer/sharer.php?u={% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{ object.get_absolute_url }}','popup','width=600,height=300'); return false;"
+        href="#"
+      >
+        <i class="fab fa-facebook-f"></i> Compartir
+      </a>
+    </li>
+    <li>
+      <a
+        target="_blank"
+        class="tw"
+        onclick="window.open('https://www.twitter.com/intent/tweet?text={% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{ object.get_absolute_url }}','popup','width=600,height=300'); return false;"
+        href="#"
+      >
+        <i class="fab fa-twitter"></i> Tweet
+      </a>
+    </li>
+    <li>
+      <a href="#" id="share-btn"><i class="fas fa-share"></i> Compartir</a>
+    </li>
+  </ul>
+</div>
+
+{% addtoblock "js" %}
+  <script>
+      function copyLink() {
+        var dummy = document.createElement('input');
+        text = window.location.href;
+        document.body.appendChild(dummy);
+        dummy.value = text;
+        dummy.select();
+        document.execCommand('copy');
+        document.body.removeChild(dummy);
+        alert('Link copiado al portapapeles');
+      }
+
+      var shareButton = document.getElementById('share-btn');
+      shareButton.addEventListener('click', event => {
+        if (navigator.share) {
+          navigator.share({
+            title: '{{ class }}',
+            url: '{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{ object.get_absolute_url }}',
+          }).then(() => {
+            console.log('Shared');
+          }).catch(console.error);
+        } else {
+          copyLink();
+        }
+        event.preventDefault();
+      });
+  </script>
+{% endaddtoblock %}
