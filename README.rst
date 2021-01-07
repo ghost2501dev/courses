@@ -77,6 +77,7 @@ We use constraints.
 Add the dependency to requirements.txt:
 
    .. code-block:: text
+
       # requirements.txt
       -c constraints.txt
       Django
