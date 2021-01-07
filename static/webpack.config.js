@@ -5,7 +5,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const inProduction = 'production' === process.env.NODE_ENV
-const buildPath = path.resolve(__dirname, '.build/')
+const buildPath = path.resolve(__dirname, 'build/')
 
 module.exports = {
   entry: {

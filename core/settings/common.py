@@ -220,7 +220,7 @@ if not DEBUG:
 
 WEBPACK_LOADER = {
     'DEFAULT': {
-        'BUNDLE_DIR_NAME': '.build/',
+        'BUNDLE_DIR_NAME': 'build/',
         'STATS_FILE': base_dir('static/webpack-stats.json'),
     }
 }
