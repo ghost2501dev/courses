@@ -1,4 +1,4 @@
-constraints.txt
+-c constraints.txt
 Django==3.0.11
 django-admin-sortable
 django-ckeditor
