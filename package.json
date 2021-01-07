@@ -1,11 +1,10 @@
 {
   "name": "courses-heroku",
   "version": "1.0.0",
-  "description": "******* courses *******",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "cd static && npm install",
-    "build": "npm run build"
+    "build": "cd static && npm install && npm run build"
   },
   "author": "Daniel Ramos",
   "license": "GPL-3.0"
