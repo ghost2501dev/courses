@@ -6,7 +6,9 @@
   "scripts": {
     "build": "cd static && npm install && npm run build"
   },
-  "cacheDirectories": ["static/node_modules", "static/.build"],
+  "cacheDirectories": [
+      "static/node_modules"
+  ],
   "author": "Daniel Ramos",
   "license": "GPL-3.0"
 }
