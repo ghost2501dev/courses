@@ -43,7 +43,7 @@
             <h3>Cursos requeridos/recomendados:</h3>
             <ul>
               {% for course_item in course.required_courses.all %}
-                <a href="{{ course_item.get_absolute_url }}">{{ course }}</a>
+                <li><a href="{{ course_item.get_absolute_url }}">{{ course_item }}</a></li>
               {% endfor %}
             </ul>
           </div>
