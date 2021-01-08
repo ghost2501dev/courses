@@ -33,3 +33,10 @@ class CourseAdmin(NonSortableParentAdmin):
 @admin.register(Class)
 class ClassAdmin(admin.ModelAdmin):
     fields = ('title', 'course', 'content', 'meta_keywords', 'meta_description')
+
+    def get_form(self, request, obj=None, **kwargs):
+        form = super().get_form(request, obj, **kwargs)
+        form.base_fields['course'].queryset = Course.objects_all.all()
+        return form
+
+
