@@ -317,6 +317,7 @@ CKEDITOR_CONFIGS = {
             'youtube_2.1.14/youtube/',
             'plugin.js',
         )],
+        'linkAddTargetToExternalLinks': False,
    },
 }
 
