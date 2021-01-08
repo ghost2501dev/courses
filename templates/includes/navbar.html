@@ -52,5 +52,9 @@
     <li {% ifequal request.resolver_match.app_name "courses" %}class="active"{% endifequal %}><a href="{% url "courses:courses" %}">Cursos</a></li>
     <li {% ifequal request.resolver_match.view_name "about" %}class="active"{% endifequal %}><a href="{% url "about" %}">Acerca de</a></li>
     <li {% ifequal request.resolver_match.view_name "support_me" %}class="active"{% endifequal %}><a href="{% url "support_me" %}">Apóyame</a></li>
+    <!--
+    <li><a href="#">Chat</a></li>
+    <li><a href="#">Underc0de</a></li>
+    -->
   </ul>
 </div>
