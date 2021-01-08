@@ -13,7 +13,7 @@ class CourseIsPublishedManager(models.Manager):
 
 class Course(models.Model):
     name = models.CharField('Nombre', max_length=128, blank=False, unique=True)
-    description = models.TextField('Descripción', default='', blank=True)
+    description = RichTextField(verbose_name='Descripción', default='', blank=True)
     youtube_url = models.CharField('URL en Youtube', max_length=256, default='', blank=True)
     duration = models.IntegerField('Duración del curso', blank=True, null=True)
     slug = models.CharField('Slug', max_length=128, blank=False, unique=True)

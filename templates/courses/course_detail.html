@@ -23,7 +23,7 @@
         <h1>{{ course }}</h1>
 
         {% if course.description %}
-          <p>{{ course.description }}</p>
+          {{ course.description|safe }}
         {% endif %}
 
         {% if course.youtube_url or course.duration %}
