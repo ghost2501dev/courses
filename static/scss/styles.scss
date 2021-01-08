@@ -390,10 +390,10 @@ code {
     ul {
       margin: 0;
       padding: 0;
+      li {
+        margin-bottom: 2px;
+      }
     }
-  }
-  li {
-    margin-bottom: 2px;
   }
 }
 
