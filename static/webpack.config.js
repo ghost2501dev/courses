@@ -24,7 +24,9 @@ module.exports = {
 
   plugins: [
     //new webpack.optimize.CommonsChunkPlugin({name: 'vendor'}),
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({
+      cleanStaleWebpackAssets: false,
+    }),
     new BundleTracker({
       filename: './webpack-stats.json',
     }),
