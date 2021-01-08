@@ -7,12 +7,13 @@ from .models import Course, Class
 
 
 def courses_view(request):
-    qs = Course.objects.annotate(first_letter_name=Upper(Substr('name', 1, 1)))
+    qs = Course.published_courses.annotate(first_letter_name=Upper(Substr('name', 1, 1)))
     return render(request, 'courses/courses.html', {'courses': qs})
 
 
 class CourseDetailView(DetailView):
     model = Course
+    queryset = Course.published_courses.all()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

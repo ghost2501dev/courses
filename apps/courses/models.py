@@ -11,11 +11,6 @@ class CourseIsPublishedManager(models.Manager):
         return super().get_queryset().filter(is_published=True)
 
 
-class CourseAllManager(models.Manager):
-    def get_queryset(self):
-        return super().get_queryset()
-
-
 class Course(models.Model):
     name = models.CharField('Nombre', max_length=128, blank=False, unique=True)
     description = models.TextField('Descripción', default='', blank=True)
@@ -29,16 +24,13 @@ class Course(models.Model):
     required_courses = models.ManyToManyField(
         'Course', blank=True, verbose_name='Cursos requeridos')
 
-    objects = CourseIsPublishedManager()
-    objects_all = CourseAllManager()
+    objects = models.Manager()
+    published_courses = CourseIsPublishedManager()
 
     class Meta:
         verbose_name = 'Curso'
         verbose_name_plural = 'Cursos'
         ordering = ['name']
-
-    class Admin:
-        manager = models.Manager()
 
     def __str__(self):
         return self.name
