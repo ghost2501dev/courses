@@ -68,3 +68,9 @@ class Class(SortableMixin):
 
     def get_absolute_url(self):
         return reverse('courses:class', args=[self.course.slug, self.slug])
+
+    def get_previous(self):
+        return super().get_previous([('course', self.course)])
+
+    def get_next(self):
+        return super().get_next([('course', self.course)])
