@@ -1,6 +1,6 @@
 $primary-color: #577FC4;
 $navbar-bg-color: $primary-color;
-$tablet-max-width: 768px;
+$tablet-max-width: 850px;
 $phone-max-width: 480px;
 
 body {
@@ -59,7 +59,7 @@ code {
 }
 
 .container {
-  padding: 20px 30px 0;
+  padding: 20px 25px 0;
   max-width: 900px;
   width: 100%;
   position: relative;
@@ -131,6 +131,7 @@ code {
     margin-left: auto;
     display: flex;
     order: 2;
+    line-height: 1.4;
     .fa-stack {
       color: white;
       font-size: 15px;
@@ -180,6 +181,9 @@ code {
       margin-right: 5px;
       order: 2;
       margin-top: -2px;
+      .fa-stack {
+        font-size: 14px;
+      }
     }
     .break {
       display: block;
