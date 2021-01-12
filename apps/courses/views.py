@@ -7,13 +7,22 @@ from .models import Course, Class
 
 
 def courses_view(request):
-    qs = Course.published_courses.annotate(first_letter_name=Upper(Substr('name', 1, 1)))
+    if request.user.is_superuser:
+        qs = Course.objects
+    else:
+        qs = Course.published_courses
+    qs = qs.annotate(first_letter_name=Upper(Substr('name', 1, 1)))
     return render(request, 'courses/courses.html', {'courses': qs})
 
 
 class CourseDetailView(DetailView):
     model = Course
-    queryset = Course.published_courses.all()
+
+    def get_queryset(self):
+        if self.request.user.is_superuser:
+            return Course.objects.all()
+        else:
+            return Course.published_courses.all()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -28,12 +37,16 @@ class ClassDetailView(DetailView):
     model = Class
 
     def get_object(self):
-        class_ = get_object_or_404(
+        is_published = True
+        if self.request.user.is_superuser:
+            is_published = False
+
+        return get_object_or_404(
             Class,
             slug__iexact=self.kwargs['class_slug'],
             course__slug__iexact=self.kwargs['course_slug'],
-            course__is_published=True)
-        return class_
+            course__is_published=is_published,
+        )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
