@@ -16,7 +16,7 @@ class Course(models.Model):
     description = RichTextField(verbose_name='Descripción', default='', blank=True)
     youtube_url = models.CharField('URL en Youtube', max_length=256, default='', blank=True)
     duration = models.IntegerField('Duración del curso', blank=True, null=True)
-    slug = models.CharField('Slug', max_length=128, blank=False, unique=True)
+    slug = models.CharField('Slug', max_length=128, blank=True, default='', unique=True)
     is_published = models.BooleanField('Está publicado', default=False)
     meta_keywords = models.CharField('Meta keywords', max_length=255, default='', blank=True)
     meta_description = models.CharField('Meta description', max_length=155, default='', blank=True)
@@ -36,7 +36,8 @@ class Course(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
+        if not self.slug:
+            self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
@@ -45,7 +46,7 @@ class Course(models.Model):
 
 class Class(SortableMixin):
     title = models.CharField('Título', max_length=128, blank=False)
-    slug = models.CharField('Slug', max_length=128, blank=False)
+    slug = models.CharField('Slug', max_length=128, blank=True, default='')
     content = RichTextField(verbose_name='Contenido')
     order = models.PositiveIntegerField('Orden', default=0, editable=False, db_index=True)
     meta_keywords = models.CharField('Meta keywords', max_length=255, default='', blank=True)
@@ -58,12 +59,17 @@ class Class(SortableMixin):
         verbose_name = 'Clase'
         verbose_name_plural = 'Clases'
         ordering = ['order']
+        unique_together = (
+            ('course', 'title'),
+            ('course', 'slug'),
+        )
 
     def __str__(self):
         return self.title
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
+        if not self.slug:
+            self.slug = slugify(self.title)
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):

@@ -17,7 +17,7 @@ class ClassInline(SortableStackedInline):
 class CourseAdmin(NonSortableParentAdmin):
     fields = (
         'name', 'is_published', 'description', 'youtube_url', 'duration',
-        'required_courses', 'meta_keywords', 'meta_description',
+        'required_courses', 'meta_keywords', 'meta_description', 'slug',
     )
     filter_horizontal = ('required_courses',)
 
@@ -28,4 +28,7 @@ class CourseAdmin(NonSortableParentAdmin):
 
 @admin.register(Class)
 class ClassAdmin(admin.ModelAdmin):
-    fields = ('title', 'course', 'content', 'meta_keywords', 'meta_description')
+    fields = (
+        'title', 'course', 'content', 'meta_keywords', 'meta_description',
+        'slug',
+    )
