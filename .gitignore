@@ -131,6 +131,6 @@ dmypy.json
 # Project
 core/settings/custom.py
 .live/
-static/build/
+static/.build/
 static/node_modules/
 static/webpack-stats.json

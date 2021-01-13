@@ -202,7 +202,7 @@ PARLER_LANGUAGES = {
 # =============================================================================
 
 STATICFILES_DIRS = [
-    base_dir('static'),
+    base_dir('static/.build'),
 ]
 
 STATIC_ROOT = live_dir('static')
@@ -220,7 +220,7 @@ if not DEBUG:
 
 WEBPACK_LOADER = {
     'DEFAULT': {
-        'BUNDLE_DIR_NAME': 'build/',
+        'BUNDLE_DIR_NAME': '',
         'STATS_FILE': base_dir('static/webpack-stats.json'),
     }
 }

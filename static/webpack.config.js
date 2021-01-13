@@ -3,9 +3,10 @@ const path = require('path')
 const BundleTracker = require('webpack-bundle-tracker')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const inProduction = 'production' === process.env.NODE_ENV
-const buildPath = path.resolve(__dirname, 'build/')
+const buildPath = path.resolve(__dirname, '.build/')
 
 module.exports = {
   entry: {
@@ -18,7 +19,7 @@ module.exports = {
 
   output: {
     path: buildPath,
-    filename: './bundles/[name]-[hash].js',
+    filename: './.bundles/[name]-[hash].js',
     publicPath: '',
   },
 
@@ -32,6 +33,11 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: './bundles/[name]-[hash].css',
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {from: 'img/', to: `${buildPath}/img/`},
+      ],
     }),
   ],
 
