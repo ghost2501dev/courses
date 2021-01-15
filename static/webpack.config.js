@@ -37,6 +37,7 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         {from: 'img/', to: `${buildPath}/img/`},
+        {from: 'ckeditor/', to: `${buildPath}/ckeditor/`},
       ],
     }),
   ],
